@@ -4,7 +4,7 @@
     "annotations": [
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"Employee Master Data\",\"Job Titles\",\"Departments\",\"Business Units\",\"Data\",\"gender\"]"
+        "value": "[\"Employee Master Data\",\"Job Titles\",\"Departments\",\"Business Units\",\"Data\",\"gender\",\"country\"]"
       },
       {
         "name": "__PBI_TimeIntelligenceEnabled",
@@ -52,12 +52,12 @@
           }
         ],
         "expression": [
-          "let",
-          "    Source = GoogleSheets.Contents(\"https://docs.google.com/spreadsheets/d/1X-mkJxeuhVwkOsrli38Wvp8vB8ycP8eGYHsIS6eMoOo/edit?usp=sharing\"),",
-          "    #\"Employee Sample Data_Table\" = Source{[name=\"Employee Sample Data\",ItemKind=\"Table\"]}[Data],",
-          "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Employee Sample Data_Table\", [PromoteAllScalars=true]),",
-          "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"EEID\", type text}, {\"Full Name\", type text}, {\"Job Title\", type text}, {\"Department\", type text}, {\"Business Unit\", type text}, {\"Gender\", type text}, {\"Ethnicity\", type text}, {\"Age\", Int64.Type}, {\"Hire Date\", type date}, {\"Annual Salary\", Int64.Type}, {\"Bonus %\", type number}, {\"Country\", type text}, {\"City\", type text}, {\"Exit Date\", type date}})",
-          "in",
+          "let\r",
+          "    Source = GoogleSheets.Contents(\"https://docs.google.com/spreadsheets/d/1X-mkJxeuhVwkOsrli38Wvp8vB8ycP8eGYHsIS6eMoOo/edit?usp=sharing\"),\r",
+          "    #\"Employee Sample Data_Table\" = Source{[name=\"Employee Sample Data\",ItemKind=\"Table\"]}[Data],\r",
+          "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Employee Sample Data_Table\", [PromoteAllScalars=true]),\r",
+          "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"EEID\", type text}, {\"Full Name\", type text}, {\"Job Title\", type text}, {\"Department\", type text}, {\"Business Unit\", type text}, {\"Gender\", type text}, {\"Ethnicity\", type text}, {\"Age\", Int64.Type}, {\"Hire Date\", type date}, {\"Annual Salary\", Int64.Type}, {\"Bonus %\", type number}, {\"Country\", type text}, {\"City\", type text}, {\"Exit Date\", type date}})\r",
+          "in\r",
           "    #\"Changed Type\""
         ],
         "kind": "m",
@@ -108,6 +108,13 @@
         "fromTable": "Data",
         "toColumn": "Gender",
         "toTable": "gender"
+      },
+      {
+        "name": "3515cc96-b2ca-48d2-9714-d6098b440335",
+        "fromColumn": "Country",
+        "fromTable": "Data",
+        "toColumn": "Country",
+        "toTable": "country"
       }
     ],
     "sourceQueryCulture": "en-IN",
@@ -1168,6 +1175,55 @@
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Employee Sample Data_Table\", [PromoteAllScalars=true]),",
                 "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"EEID\", type text}, {\"Full Name\", type text}, {\"Job Title\", type text}, {\"Department\", type text}, {\"Business Unit\", type text}, {\"Gender\", type text}, {\"Ethnicity\", type text}, {\"Age\", Int64.Type}, {\"Hire Date\", type date}, {\"Annual Salary\", Int64.Type}, {\"Bonus %\", type number}, {\"Country\", type text}, {\"City\", type text}, {\"Exit Date\", type date}}),",
                 "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Changed Type\",{\"Gender\"}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Removed Other Columns\")",
+                "in",
+                "    #\"Removed Duplicates\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+            {
+        "name": "country",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Country",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "0290d399-7681-4010-87be-d563b4c01875",
+            "sourceColumn": "Country",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "9c6575fa-56b9-4cde-b403-78ee9e0e9b6d",
+        "partitions": [
+          {
+            "name": "country",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = GoogleSheets.Contents(\"https://docs.google.com/spreadsheets/d/1X-mkJxeuhVwkOsrli38Wvp8vB8ycP8eGYHsIS6eMoOo/edit?usp=sharing\"),",
+                "    #\"Employee Sample Data_Table\" = Source{[name=\"Employee Sample Data\",ItemKind=\"Table\"]}[Data],",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Employee Sample Data_Table\", [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"EEID\", type text}, {\"Full Name\", type text}, {\"Job Title\", type text}, {\"Department\", type text}, {\"Business Unit\", type text}, {\"Gender\", type text}, {\"Ethnicity\", type text}, {\"Age\", Int64.Type}, {\"Hire Date\", type date}, {\"Annual Salary\", Int64.Type}, {\"Bonus %\", type number}, {\"Country\", type text}, {\"City\", type text}, {\"Exit Date\", type date}}),",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Changed Type\",{\"Country\"}),",
                 "    #\"Removed Duplicates\" = Table.Distinct(#\"Removed Other Columns\")",
                 "in",
                 "    #\"Removed Duplicates\""
