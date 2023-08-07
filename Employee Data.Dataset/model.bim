@@ -4,7 +4,7 @@
     "annotations": [
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"Employee Master Data\",\"Job Titles\",\"Departments\",\"Business Units\",\"Data\"]"
+        "value": "[\"Employee Master Data\",\"Job Titles\",\"Departments\",\"Business Units\",\"Data\",\"gender\"]"
       },
       {
         "name": "__PBI_TimeIntelligenceEnabled",
@@ -101,6 +101,13 @@
         "fromTable": "Data",
         "toColumn": "Business Unit",
         "toTable": "Business Units"
+      },
+      {
+        "name": "8851a0e6-7f80-4d0c-92db-e08fff73a582",
+        "fromColumn": "Gender",
+        "fromTable": "Data",
+        "toColumn": "Gender",
+        "toTable": "gender"
       }
     ],
     "sourceQueryCulture": "en-IN",
@@ -1120,6 +1127,55 @@
           }
         ],
         "showAsVariationsOnly": true
+      },
+      {
+        "name": "gender",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Gender",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "b526a503-6e15-403b-aa31-1f602d3d3545",
+            "sourceColumn": "Gender",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "2798ce53-ef83-4f69-8989-e8f135a07a8e",
+        "partitions": [
+          {
+            "name": "gender",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = GoogleSheets.Contents(\"https://docs.google.com/spreadsheets/d/1X-mkJxeuhVwkOsrli38Wvp8vB8ycP8eGYHsIS6eMoOo/edit?usp=sharing\"),",
+                "    #\"Employee Sample Data_Table\" = Source{[name=\"Employee Sample Data\",ItemKind=\"Table\"]}[Data],",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Employee Sample Data_Table\", [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"EEID\", type text}, {\"Full Name\", type text}, {\"Job Title\", type text}, {\"Department\", type text}, {\"Business Unit\", type text}, {\"Gender\", type text}, {\"Ethnicity\", type text}, {\"Age\", Int64.Type}, {\"Hire Date\", type date}, {\"Annual Salary\", Int64.Type}, {\"Bonus %\", type number}, {\"Country\", type text}, {\"City\", type text}, {\"Exit Date\", type date}}),",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Changed Type\",{\"Gender\"}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Removed Other Columns\")",
+                "in",
+                "    #\"Removed Duplicates\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
       }
     ]
   }
