@@ -10,8 +10,8 @@
       "nodes": [
         {
           "location": {
-            "x": 580.64962596244584,
-            "y": -10
+            "x": 578.43106777603953,
+            "y": 536.82038471804924
           },
           "nodeIndex": "Business Units",
           "nodeLineageTag": "94b30fe2-f979-4c34-984f-2ebac9ac914c",
@@ -23,8 +23,21 @@
         },
         {
           "location": {
-            "x": 295.27313376261463,
-            "y": 7.1295254664468928
+            "x": 0,
+            "y": 357.32091181829645
+          },
+          "nodeIndex": "country",
+          "nodeLineageTag": "9c6575fa-56b9-4cde-b403-78ee9e0e9b6d",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 294.25040048899291,
+            "y": 190.35268322532249
           },
           "nodeIndex": "Data",
           "nodeLineageTag": "cca5e0bf-ef8a-447d-86c7-6c4c9f21c42a",
@@ -36,8 +49,8 @@
         },
         {
           "location": {
-            "x": 10,
-            "y": 326.18401273651415
+            "x": 445.19678003565343,
+            "y": 0
           },
           "nodeIndex": "Departments",
           "nodeLineageTag": "9d5dcfb7-195b-4c29-9603-e9a1ade3a557",
@@ -49,21 +62,8 @@
         },
         {
           "location": {
-            "x": 453.86486078309639,
-            "y": 359.83131013533381
-          },
-          "nodeIndex": "Job Titles",
-          "nodeLineageTag": "3f9b8b81-7523-4c28-bf32-1c876489b199",
-          "size": {
-            "height": 104,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 854.64962596244584,
-            "y": 184.9156550676669
+            "x": 811.461711815474,
+            "y": 125.43977835614618
           },
           "nodeIndex": "gender",
           "nodeLineageTag": "2798ce53-ef83-4f69-8989-e8f135a07a8e",
@@ -74,8 +74,12 @@
           "zIndex": 0
         },
         {
-          "nodeIndex": "country",
-          "nodeLineageTag": "9c6575fa-56b9-4cde-b403-78ee9e0e9b6d",
+          "location": {
+            "x": 294.15618684390938,
+            "y": 588.87132073533826
+          },
+          "nodeIndex": "Job Titles",
+          "nodeLineageTag": "3f9b8b81-7523-4c28-bf32-1c876489b199",
           "size": {
             "height": 104,
             "width": 234
